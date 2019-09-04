@@ -1,0 +1,54 @@
+By extending thread class-
+
+class Multi extends Thread{  
+public void run(){  
+System.out.println(" running...");  
+}  
+public static void main(String args[]){  
+Multi t1=new Multi();  
+       t1.start();  
+ }  
+}  
+
+
+ By implementing Runnable interface-
+
+class Multi implements Runnable{  
+public void run(){  
+System.out.println("thread is running...");  
+}  
+  
+public static void main(String args[]){  
+Multi m1=new Multi();  
+Thread t1 =new Thread(m1);  
+t1.start();  
+ }  
+}  
+
+
+
+
+
+By implementing Callable interface-
+
+class Counter implements Callable { 
+private static final int SIZE = 2; 
+public String call() {
+ return Thread.currentThread().getName() + " executing ...";
+ }
+ public static void main(String[] args) throws 
+InterruptedException, ExecutionException {
+
+ ExecutorService executor = Executors .newFixedThreadPool(SIZE);
+ Future future1 = executor.submit(new Counter());
+
+ System.out.println(Thread.currentThread().getName() + " executing ..."); 
+System.out.println(future1.get()); 
+
+
+ } 
+}
+
+
+
+
